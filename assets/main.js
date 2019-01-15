@@ -24,11 +24,26 @@ $(document).ready( function(){
         method: "GET",
         headers: {
             "X-RapidAPI-Key": "95faa2613dmsh9cf38f16b3fd33bp1f9e0djsnbdbe12d99b9f"
-            }
+            },
+            origin1: "Kansas City",
+            destination1: "Dallas",
+            departuredate1: "2019-01-20",
+            cabin: "e",
+            currency: "USD",
+            adults: 1,
+            bags: 0,
+        
             }).then(function(response) {
             console.log(response)
+            var results = response.data;
+            var cheapest = results.cheapestPrice
+            console.log(cheapest);
+           
+            
         });
+
     }
+    $("#submit").on("click",getDestination())
 
    
 });
