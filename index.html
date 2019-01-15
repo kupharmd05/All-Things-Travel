@@ -27,10 +27,6 @@
 					<li class="nav-item "><a href="about-us.html" class="nav-link">About Us</a></li>
 				</ul>
 			</div>
-			<form class="form-inline my-2 my-lg-0">
-				<input class="form-control mr-sm-2" type="search" placeholder="Destination" id="destination" aria-label="Search">
-				<button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
-			</form>
 		</div>
 	</nav>
 	<!-- showcase slider -->
@@ -40,10 +36,36 @@
 				<div class="carousel-item active carousel-image-1">
 					<div class="conatiner">
 						<div class="carousel-caption d-none d-sm-block text-center mb-5">
-							<h1 class="display-3">Heading One</h1>
-							<p class="lead">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sapiente consequuntur placeat
-								voluptatibus a earum ad tenetur perspiciatis quasi laboriosam mollitia!</p>
-							<a href="#" class="btn btn-primary btn-lg">Sign up!</a>
+							<form>
+								<div class="form-row align-items-center">
+									<div class="col-sm-3 my-1">
+										<label class="sr-only" for="inlineFormInputName">Name</label>
+										<input type="text" class="form-control" id="inlineFormInputName" placeholder="Jane Doe">
+									</div>
+									<div class="col-sm-3 my-1">
+										<label class="sr-only" for="inlineFormInputGroupUsername">Username</label>
+										<div class="input-group">
+											<div class="input-group-prepend">
+												<div class="input-group-text">@</div>
+											</div>
+											<input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="Username">
+										</div>
+									</div>
+									<div class="col-sm-3 my-1">
+											<label class="sr-only" for="inlineFormInputName">Name</label>
+											<input type="text" class="form-control" id="inlineFormInputName" placeholder="Jane Doe">
+										</div>
+									</div>
+									<div class="col-sm-3 my-1">
+											<label class="sr-only" for="inlineFormInputName">Name</label>
+											<input type="text" class="form-control" id="inlineFormInputName" placeholder="Jane Doe">
+										</div>
+									<div class="col-auto my-1">
+										<button type="submit" class="btn btn-primary">Submit</button>
+									</div>
+								</div>
+							</form>
+
 						</div>
 					</div>
 				</div>
@@ -89,6 +111,20 @@
 			</a>
 		</div>
 	</section>
+	<div class="container">
+		<div class="row" id="fights">
+			Flights Here!
+		</div>
+		<div class="row" id="hotels">
+			Hotels Here!
+		</div>
+		<div class="row" id="restaurants">
+			Restaurants Here!
+		</div>
+		<div class="row" id="weather">
+			Weather Here!
+		</div>
+	</div>
 
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
