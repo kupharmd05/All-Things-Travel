@@ -19,16 +19,19 @@ $(document).ready( function(){
 
         var destCity ="";
 
-        var kayakAPIKEY = "95faa2613dmsh9cf38f16b3fd33bp1f9e0djsnbdbe12d99b9f"
+    
+  
 
-        var kayakQueryURL = "https://apidojo-kayak-v1.p.rapidapi.com/locations/search?q=" + destCity + "$appid=" + kayakAPIKEY;
+        
+    
+    $.ajax({
+        url: "https://apidojo-kayak-v1.p.rapidapi.com/locations/search?where=" + destCity,
+        method: "GET",
+        headers: {
+            "X-RapidAPI-Key": "95faa2613dmsh9cf38f16b3fd33bp1f9e0djsnbdbe12d99b9f"
+            }
+            }).then(function(response) {
+            console.log(response)
+        });
+    })
 
-        $.ajax({
-            url: kayakQueryURL,
-            method: "GET",
-        }).then(function(response) {
-            console.log(response);
-        })
-    }
-})
-// Kayak API Key: 95faa2613dmsh9cf38f16b3fd33bp1f9e0djsnbdbe12d99b9f
