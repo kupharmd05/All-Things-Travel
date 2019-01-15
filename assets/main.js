@@ -2,7 +2,7 @@
 $(document).ready( function(){
     function getWeather(){
 
-        var userCity = "";
+        var userCity = $("#userDestination").val().trim();
 
         var openweathermapAPIKEY = "376fffcd91763ad35ed350f2f78f8296";
 
@@ -17,13 +17,8 @@ $(document).ready( function(){
     }
     function getDestination(){
 
-        var destCity ="";
+        var destCity =$("#userDestination").val().trim();
 
-    
-  
-
-        
-    
     $.ajax({
         url: "https://apidojo-kayak-v1.p.rapidapi.com/locations/search?where=" + destCity,
         method: "GET",
@@ -33,5 +28,7 @@ $(document).ready( function(){
             }).then(function(response) {
             console.log(response)
         });
-    })
+    }
 
+   
+});

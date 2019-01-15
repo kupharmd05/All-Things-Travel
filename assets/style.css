@@ -1,5 +1,14 @@
+.center-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 100px;
+}
+
+
 .carousel-item {
-    height: 100vh;
+    height: 90vh;
 }
 
 .carousel-image-1 {
