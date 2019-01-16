@@ -1,11 +1,15 @@
 
 $(document).ready(function () {
+
+   
+
     function getDestination() {
+        var userInput = $("#userDestination").val().trim();
 
-        var destCity = $("#userDestination").val().trim();
-
+        
+        var destCity = userInput;
+        console.log(userInput)
         var location = $("#location").val().trim();
-
         var outgoingDate = $("#outgoingDate").val().trim();
 
         var returnDate = $("#returnDate").val().trim();
@@ -40,11 +44,13 @@ $(document).ready(function () {
     }
     //Zomato api
     function getFood() {
-        let city_name = $("#userDestination").val().trim();
-        let radius = 15;
+        var userInput = $("#userDestination").val().trim();
+         let destCity = userInput
+         console.log(userInput)
+        let radius = 2000;
         let no_of_resturants = 20
 
-        let urlQuery = "https://developers.zomato.com/api/v2.1/search?entity_type=city&q=" + city_name
+        let urlQuery = "https://developers.zomato.com/api/v2.1/search?entity_type=city&q=" + destCity
             + "&start=01&count=" + no_of_resturants + "&radius=" + radius + "M&sort=rating"
 
         $.ajax({
@@ -54,17 +60,26 @@ $(document).ready(function () {
                 "user-key": "b485d5465e4552f6c7357bacb40808dc"
             }
         }).then(function (response) {
+            console.log(response.restaurants)
+            let len = response.restaurants.length
+            for(let i = 0 ; i <len ; i++){
+           
             let result = response.restaurants
-            console.log(result[0].restaurant)
-            console.log("name : " + result[0].restaurant.name)
-            console.log("cuisines : " + result[0].restaurant.cuisines)
-            console.log("Location : " + result[0].restaurant.location.address)
-            console.log("Rating : " + result[0].restaurant.user_rating.aggregate_rating)
-            console.log("Image_url : " + result[0].restaurant.photos_url)
+            console.log(result[i].restaurant)
+            console.log("name : " + result[i].restaurant.name)
+            console.log("cuisines : " + result[i].restaurant.cuisines)
+            console.log("Location : " + result[i].restaurant.location.address)
+            console.log("Rating : " + result[i].restaurant.user_rating.aggregate_rating)
+            console.log("Image_url : " + result[i].restaurant.photos_url)
+        }
         });
     }
 
-    $("#submit").on("click", getDestination(),getFood())
+    $("#submit").on("click", event=>{
+        event.preventDefault()
+        getFood(),
+        getDestination()
+    })
 
 
 });
