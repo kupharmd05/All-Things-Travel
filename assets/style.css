@@ -1,0 +1,41 @@
+.center-form {
+    display: flex;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+
+}
+
+.btn-white {
+    background-color: white;
+    color: black;
+}
+
+.carousel-item {
+    height: 90vh;
+}
+
+.carousel-image-1 {
+    background: url("goldengate.jpg"); 
+    background-size: cover;
+}
+
+.carousel-image-2 {
+    background: url("paris.jpg");
+    background-size: cover;
+}
+
+.carousel-image-3 {
+    background: url("london.jpg");
+    background-size: cover;
+}
+
+.carousel-image-4 {
+    background: url("newyork.jpg");
+    background-size: cover;
+}
+
+#submit {
+    margin: 100px
+}
