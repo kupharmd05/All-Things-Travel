@@ -35,3 +35,7 @@
     background: url("newyork.jpg");
     background-size: cover;
 }
+
+#submit {
+    margin: 100px
+}
