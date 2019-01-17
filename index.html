@@ -15,7 +15,7 @@
 </head>
 
 <body>
-	<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+	<!-- <nav class="navbar navbar-expand-md navbar-dark bg-dark">
 		<div class="container">
 			<a href="index.html" class="navbar-brand">All Things Travel</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse">
@@ -27,9 +27,59 @@
 				</ul>
 			</div>
 		</div>
-	</nav>
+	</nav> -->
 	<!-- showcase slider -->
 	<section id="slide">
+			<div class="center-form col-md-10 offset-md-1 mt-5">
+					<div class="container-fluid">
+						<form>
+							<div class="form-row">
+								<div class="col-md-2 my-1">
+									<input type="text" class="form-control" id="location" placeholder="Traveling From">
+								</div>
+								<div class="col-md-2 my-1">
+									<input type="text" class="form-control" id="userDestination" placeholder="Destination">
+								</div>
+								<div class="input-group date col-sm-2 my-1">
+									<input type="text" class="form-control" value="" placeholder="2019-01-20" id="outgoingDate">
+									<div class="input-group-addon">
+										<span class="glyphicon glyphicon-th"></span>
+									</div>
+								</div>
+								<div class="input-group date col-sm-2 my-1">
+									<input type="text" class="form-control" value="" placeholder="2019-01-30" id="returnDate">
+									<div class="input-group-addon">
+										<span class="glyphicon glyphicon-th"></span>
+									</div>
+								</div>
+								<div class="dropdown my-1 ml-3" id="adults">
+										<button class="btn btn-white dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										  Adults
+										</button>
+										<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+										  <a class="dropdown-item" value="1">1</a>
+										  <a class="dropdown-item" value="2">2</a>
+										  <a class="dropdown-item" value="3">3</a>
+										</div>
+								</div>
+								<div class="dropdown my-1 ml-3" id="bags">
+										<button class="btn btn-white dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+											Bags
+										</button>
+										<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+										  <a class="dropdown-item" value="1">1</a>
+										  <a class="dropdown-item" value="2">2</a>
+										  <a class="dropdown-item" value="3">3</a>
+										</div>
+								</div>
+								<div class="col-auto my-1 ml-3">
+										<button type="submit" class="btn btn-primary" id="submit">Submit</button>
+								</div>
+							</div>
+							
+						</form>
+					</div>
+				</div>
 		<div id="carousel" class="carousel slide" data-ride="carousel">
 			<div class="carousel-inner">
 				<div class="carousel-item active carousel-image-1">
@@ -72,36 +122,7 @@
 				<span class="sr-only" class="text-primary">Next</span>
 			</a>
 		</div>
-		<div id="criteria" class="center-form">
-			<div class="container-fluid">
-				<form>
-					<div class="form-row">
-						<div class="col-md-2 my-1">
-							<input type="text" class="form-control" id="location" placeholder="Traveling From">
-						</div>
-						<div class="col-sm-2 my-1">
-							<input type="text" class="form-control" id="userDestination" placeholder="Destination">
-						</div>
-						<div class="input-group date col-sm-4 my-1">
-							<input type="text" class="form-control" value="" placeholder="2019-01-20" id="outgoingDate">
-							<div class="input-group-addon">
-								<span class="glyphicon glyphicon-th"></span>
-							</div>
-						</div>
-						<div class="input-group date col-sm-4 my-1">
-								<input type="text" class="form-control" value="" placeholder="2019-01-30" id="returnDate">
-								<div class="input-group-addon">
-									<span class="glyphicon glyphicon-th"></span>
-								</div>
-							</div>
-					</div>
-					<div class="col-auto my-1">
-					<button type="submit" class="btn btn-primary" id="submit">Submit</button>
-					</div>
-				</form>
-				
-			</div>
-		</div>
+
 	</section>
 	<div class="container">
 		<div class="row" id="fights">
