@@ -1,12 +1,19 @@
 
 $(document).ready(function () {
 
-   
+    $("#outgoingDate").datepicker({
+        dateFormat: 'yy-mm-dd'
+    });
+    
+    $("#returnDate").datepicker({
+        dateFormat: 'yy-mm-dd'
+    });
+
 
     function getDestination() {
         var userInput = $("#userDestination").val().trim();
 
-        
+
         var destCity = userInput;
         console.log(userInput)
         var location = $("#location").val().trim();
@@ -45,8 +52,8 @@ $(document).ready(function () {
     //Zomato api
     function getFood() {
         var userInput = $("#userDestination").val().trim();
-         let destCity = userInput
-         console.log(userInput)
+        let destCity = userInput
+        console.log(userInput)
         let radius = 2000;
         let no_of_resturants = 20
 
@@ -62,23 +69,23 @@ $(document).ready(function () {
         }).then(function (response) {
             console.log(response.restaurants)
             let len = response.restaurants.length
-            for(let i = 0 ; i <len ; i++){
-           
-            let result = response.restaurants
-            console.log(result[i].restaurant)
-            console.log("name : " + result[i].restaurant.name)
-            console.log("cuisines : " + result[i].restaurant.cuisines)
-            console.log("Location : " + result[i].restaurant.location.address)
-            console.log("Rating : " + result[i].restaurant.user_rating.aggregate_rating)
-            console.log("Image_url : " + result[i].restaurant.photos_url)
-        }
+            for (let i = 0; i < len; i++) {
+
+                let result = response.restaurants
+                console.log(result[i].restaurant)
+                console.log("name : " + result[i].restaurant.name)
+                console.log("cuisines : " + result[i].restaurant.cuisines)
+                console.log("Location : " + result[i].restaurant.location.address)
+                console.log("Rating : " + result[i].restaurant.user_rating.aggregate_rating)
+                console.log("Image_url : " + result[i].restaurant.photos_url)
+            }
         });
     }
 
-    $("#submit").on("click", event=>{
+    $("#submit").on("click", event => {
         event.preventDefault()
         getFood(),
-        getDestination()
+            getDestination()
     })
 
 
