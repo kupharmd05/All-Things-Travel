@@ -8,22 +8,33 @@ $(document).ready(function () {
         dateFormat: 'yy-mm-dd'
     });
 
+    $("#dropdown-1").on("click", "a", function () {
+        $(this).parents(".dropdown").find(".btn").html($(this).text());
+        $(this).parents(".dropdown").find(".btn").val($(this).data("value"));
+
+    })
+
+    $("#dropdown-2").on("click", "a", function () {
+        $(this).parents(".dropdown").find(".btn").html($(this).text());
+        $(this).parents(".dropdown").find(".btn").val($(this).data("value"));
+
+    
 
     function getDestination() {
-        var userInput = $("#userDestination").val().trim();
+        var destCity = $("#userDestination").val().trim();
 
 
-        var destCity = userInput;
-        console.log(userInput)
+        console.log(destCity)
+
         var location = $("#location").val().trim();
         var outgoingDate = $("#outgoingDate").val().trim();
-        console.log(typeof outgoingDate);
+      
+      console.log(typeof outgoingDate);
         console.log('Date Leaving: ' + outgoingDate);
         var returnDate = $("#returnDate").val().trim();
+            var bags = $("#bags").val().trim();
 
-        // var bags = $("bags").val().trim();
-
-        // var adults = $("#adults").val().trim();
+        var adults = $("#adults").val().trim();
 
         $.ajax({
             url: "https://apidojo-kayak-v1.p.rapidapi.com/flights/create-session?origin1=" + location + "&destination1=" + destCity + "&departdate1=" + outgoingDate + "&cabin=e&currency=USD&adults=1&bags=0&departdate2=" + returnDate,
@@ -34,14 +45,7 @@ $(document).ready(function () {
 
 
 
-            // origin1: location,
-            // destination1: destCity,
-            // departuredate1: outgoingDate,
-            // departuredate2: returnDate,
-            // cabin: "e",
-            // currency: "USD",
-            // adults: adults,
-            // bags: bags,
+          
 
         }).then(function (response) {
             console.log(response)
@@ -67,57 +71,64 @@ $(document).ready(function () {
             console.log("flight Price: "+fPrice)
             let pBaggage = "";
             console.log("Passager Baggage: "+pBaggage)
+=======
+     
+
+   
 
 
-        });
 
-    }
-    //Zomato api
+      });
+
+     }
+    // //Zomato api
     function getFood() {
-        var userInput = $("#userDestination").val().trim();
-        let destCity = userInput
-        console.log(userInput)
-        let radius = 2000;
-        let no_of_resturants = 20
+        var destCity = $("#userDestination").val().trim();
 
-        let urlQuery = "https://developers.zomato.com/api/v2.1/search?entity_type=city&q=" + destCity +
-            "&start=01&count=" + no_of_resturants + "&radius=" + radius + "M&sort=rating"
+
+
+        console.log(destCity)
+
+
+        const cityurlQuery = "https://developers.zomato.com/api/v2.1/cities?q=" + destCity;
+
 
         $.ajax({
-            url: urlQuery,
+            url: cityurlQuery,
             method: "GET",
             headers: {
                 "user-key": "b485d5465e4552f6c7357bacb40808dc"
-            }
-        }).then(function (response) {
-            console.log(response.restaurants)
-            let len = response.restaurants.length
-            for (let i = 0; i < len; i++) {
+            },
+           }).then(function (response) {
+            console.log(response)
+            var cityInfo = response
 
-                let result = response.restaurants
-                console.log(result[i].restaurant)
-                console.log("name : " + result[i].restaurant.name)
-                console.log("cuisines : " + result[i].restaurant.cuisines)
-                console.log("Location : " + result[i].restaurant.location.address)
-                console.log("Rating : " + result[i].restaurant.user_rating.aggregate_rating)
-                console.log("Image_url : " + result[i].restaurant.photos_url)
+            let cityID = 0
+
+            if (cityInfo !== "") {
+
+                let cityID = cityInfo.location_suggestions[0].id;
+
+                console.log(cityID);
             }
+            function getRestaurants(){
+            $.ajax({
+                url: "https://developers.zomato.com/api/v2.1/search?entity_id=" + cityID + "&entity_type=city&sort=rating",
+                method: "GET",
+                headers: {
+                    "user-key": "b485d5465e4552f6c7357bacb40808dc"
+                }
+            }).then(function (response) {
+                console.log(response);
+                });
+
+            }   
+
         });
-    }
+    };
 
-     $("#submit").on("click", event => {
-        //prevent browser default
-        event.preventDefault()  
-        //set variables    
-       // getDestination()
-        displayResult()
-        displayResult()
-        displayResult()
-        displayResult()
-      
-
-     
-     })
+       
+    
      function displayResult(){
         //main section for the display result
         $(".display-result").addClass("d-inline")
@@ -158,39 +169,17 @@ $(document).ready(function () {
         $(baggages).html('<a href="http://www.google.com">Details & baggage fees v</a>')
         
         
-        }
+     };
 
-  
- });
-// function getFood() {
-//     var destCity = $("#userDestination").val().trim();
-
-//     console.log(destCity)
-
-
-//     const cityurlQuery ="https://developers.zomato.com/api/v2.1/cities?q=" + destCity
-//     $.ajax({
-//         url: cityurlQuery,
-//         method: "GET",
-//         headers: {
-//             "user-key": "b485d5465e4552f6c7357bacb40808dc"
-//         }
-//     }).then(function (response) {
-//         console.log(response)
-//         var cityInfo = response
-
-//         let cityID = 0
-
-//         if(cityInfo !== "") {
-
-//          cityID = cityInfo
-
-//         console.log(cityID);
-//         }
-
-
-//     });
-//     // console.log(cityID);
- 
-// getFood()
    
+
+    $("#submit").on("click", event => {
+        event.preventDefault()
+        getFood()
+        getDestination()
+        displayResult()
+    });
+
+});
+
+
