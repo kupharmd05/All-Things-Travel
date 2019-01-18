@@ -12,12 +12,12 @@ $(document).ready(function () {
         $(this).parents(".dropdown").find(".btn").html($(this).text());
         $(this).parents(".dropdown").find(".btn").val($(this).data("value"));
 
-    })
+    });
 
     $("#dropdown-2").on("click", "a", function () {
         $(this).parents(".dropdown").find(".btn").html($(this).text());
         $(this).parents(".dropdown").find(".btn").val($(this).data("value"));
-
+    });
     
 
     function getDestination() {
@@ -71,7 +71,7 @@ $(document).ready(function () {
             console.log("flight Price: "+fPrice)
             let pBaggage = "";
             console.log("Passager Baggage: "+pBaggage)
-=======
+
      
 
    
@@ -173,13 +173,14 @@ $(document).ready(function () {
 
    
 
-    $("#submit").on("click", event => {
-        event.preventDefault()
-        getFood()
-        getDestination()
-        displayResult()
-    });
+        $("#submit").on("click", event => {
+            event.preventDefault()
+            getFood()
+            getDestination()
+            displayResult()
+            });
 
 });
+
 
 
