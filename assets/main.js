@@ -20,6 +20,11 @@ $(document).ready(function () {
     });
     
 
+
+    })
+
+
+
     function getDestination() {
         var destCity = $("#userDestination").val().trim();
 
@@ -81,17 +86,14 @@ $(document).ready(function () {
       });
 
      }
+
     // //Zomato api
     function getFood() {
         var destCity = $("#userDestination").val().trim();
 
-
-
         console.log(destCity)
 
-
         const cityurlQuery = "https://developers.zomato.com/api/v2.1/cities?q=" + destCity;
-
 
         $.ajax({
             url: cityurlQuery,
@@ -99,19 +101,12 @@ $(document).ready(function () {
             headers: {
                 "user-key": "b485d5465e4552f6c7357bacb40808dc"
             },
-           }).then(function (response) {
-            console.log(response)
-            var cityInfo = response
-
-            let cityID = 0
-
-            if (cityInfo !== "") {
-
+            
+        }).then(function (cityInfo) {
+           
                 let cityID = cityInfo.location_suggestions[0].id;
 
-                console.log(cityID);
-            }
-            function getRestaurants(){
+                
             $.ajax({
                 url: "https://developers.zomato.com/api/v2.1/search?entity_id=" + cityID + "&entity_type=city&sort=rating",
                 method: "GET",
@@ -122,10 +117,10 @@ $(document).ready(function () {
                 console.log(response);
                 });
 
-            }   
+            }); 
 
-        });
-    };
+        }
+    
 
        
     
