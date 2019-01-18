@@ -21,44 +21,37 @@ $(document).ready(function () {
 
     })
 
-    // function getDestination() {
-    //     var destCity = $("#userDestination").val().trim();
+    function getDestination() {
+        var destCity = $("#userDestination").val().trim();
 
-    //     console.log(destCity)
+        console.log(destCity)
 
-    //     var location = $("#location").val().trim();
-    //     var outgoingDate = $("#outgoingDate").val().trim();
+        var location = $("#location").val().trim();
+        var outgoingDate = $("#outgoingDate").val().trim();
 
-    //     var returnDate = $("#returnDate").val().trim();
+        var returnDate = $("#returnDate").val().trim();
 
-    //     var bags = $("#bags").val().trim();
+        var bags = $("#bags").val().trim();
 
-    //     var adults = $("#adults").val().trim();
+        var adults = $("#adults").val().trim();
 
-    //     $.ajax({
-    //         url: "https://apidojo-kayak-v1.p.rapidapi.com/flights/create-session?origin1=" + location + "&destination1=" + destCity + "&departdate1=" + outgoingDate + "&cabin=e&currency=USD&adults="+adults+"&bags="+bags+"&departdate2=" + returnDate + "",
-    //         method: "GET",
-    //         headers: {
-    //             "X-RapidAPI-Key": "95faa2613dmsh9cf38f16b3fd33bp1f9e0djsnbdbe12d99b9f"
-    //         },
+        $.ajax({
+            url: "https://apidojo-kayak-v1.p.rapidapi.com/flights/create-session?origin1=" + location + "&destination1=" + destCity + "&departdate1=" + outgoingDate + "&cabin=e&currency=USD&adults="+adults+"&bags="+bags+"&departdate2=" + returnDate + "",
+            method: "GET",
+            headers: {
+                "X-RapidAPI-Key": "95faa2613dmsh9cf38f16b3fd33bp1f9e0djsnbdbe12d99b9f"
+            },
 
-    //         // origin1: location,
-    //         // destination1: destCity,
-    //         // departuredate1: outgoingDate,
-    //         // departuredate2: returnDate,
-    //         // cabin: "e",
-    //         // currency: "USD",
-    //         // adults: adults,
-    //         // bags: bags,
+           
 
-    //     }).then(function (response) {
-    //         console.log(response)
+        }).then(function (response) {
+            console.log(response)
 
 
 
-    //     });
+        });
 
-    // }
+    }
     // //Zomato api
     function getFood() {
         var destCity = $("#userDestination").val().trim();
@@ -74,22 +67,12 @@ $(document).ready(function () {
             headers: {
                 "user-key": "b485d5465e4552f6c7357bacb40808dc"
             },
-            success: function () {
-                getRestaurants();
-            }
-        }).then(function (response) {
-            console.log(response)
-            var cityInfo = response
-
-            let cityID = 0
-
-            if (cityInfo !== "") {
-
+            
+        }).then(function (cityInfo) {
+           
                 let cityID = cityInfo.location_suggestions[0].id;
 
-                console.log(cityID);
-            }
-            function getRestaurants(){
+                
             $.ajax({
                 url: "https://developers.zomato.com/api/v2.1/search?entity_id=" + cityID + "&entity_type=city&sort=rating",
                 method: "GET",
@@ -100,10 +83,10 @@ $(document).ready(function () {
                 console.log(response);
                 });
 
-            }   
+            }); 
 
-        });
-    };
+        }
+    
 
     $("#submit").on("click", event => {
         event.preventDefault()
