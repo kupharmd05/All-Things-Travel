@@ -21,10 +21,6 @@ $(document).ready(function () {
     
 
 
-    })
-
-
-
     function getDestination() {
         var destCity = $("#userDestination").val().trim();
 
@@ -115,6 +111,39 @@ $(document).ready(function () {
                 }
             }).then(function (response) {
                 console.log(response);
+                
+                let rest = response.restaurants
+                console.log(rest);
+                // Checking to make sure API is pulling something back
+                console.log(rest[0].restaurant.name);
+             
+                console.log(rest[0].restaurant.location.address);
+               
+                console.log(rest[0].restaurant.url);
+                
+                console.log(rest[0].restaurant.menu_url);
+                
+                console.log(rest[0].restaurant.user_rating.aggregate_rating);
+                
+                console.log(rest[0].restaurant.thumb);
+                
+                // Looping over response to limit it to 3, applying HTML to empty restaurants div with results
+                for (var i = 0; i < 3; i++) {
+                    let name = (rest[i].restaurant.name);
+                    let address = (rest[i].restaurant.location.address);
+                    let url = (rest[i].restaurant.url);
+                    let menu = (rest[i].restaurant.menu_url);
+                    let rating = (rest[i].restaurant.user_rating.aggregate_rating);
+                    let image = (rest[i].restaurant.thumb);
+
+
+                let restaurantInfo = '<div class="card"><div class="row p-3"><div class="col-5"><img src="'+image+'" class="img-fluid img-thumbnail alt=""></div><div class="col-5"><h6>'+name+'</h6><p>'+address+'</p></div><div class="col-1"><div class="badge badge-success">'+rating+'</div></div></div><hr><div class="row text-center no-gutters pb-3"><div class="col-6"><a href="'+menu+'" target="_blank" class="btn btn-danger">Menu</a></div><div class="col-6"><a href="'+url+'" target="_blank" class="btn btn-danger">Website</a></div></div></div>';
+                
+                $("#restaurants").append(restaurantInfo);
+                }
+
+                
+
                 });
 
             }); 
@@ -166,13 +195,15 @@ $(document).ready(function () {
         
      };
 
+
+
    
 
         $("#submit").on("click", event => {
             event.preventDefault()
             getFood()
-            getDestination()
-            displayResult()
+            // getDestination()
+            // displayResult()
             });
 
 });
