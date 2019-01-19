@@ -227,6 +227,10 @@ $(document).ready(function() {
 		displayResult();
 	});
 });
-
-
-   
+let url = "https://api.travelpayouts.com/v1/prices/cheap?origin=MOW&destination=HKT&depart_date=2019-02&return_date=2019-02&token=fd97bdfe7eb46a7a1dca88d506ac5568"
+$.ajax({
+    url:url,
+    method:"get"
+}).then(function(response){
+console.log(response)
+})
