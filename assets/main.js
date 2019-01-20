@@ -1,6 +1,7 @@
 $(document).ready(function () {
 
     $("#outgoingDate").datepicker({
+        
         dateFormat: 'yy-mm-dd'
     });
 
@@ -23,7 +24,7 @@ $(document).ready(function () {
 
     function getDestination() {
         var destCity = $("#userDestination").val().trim();
-
+       
 
         console.log(destCity)
 
@@ -47,6 +48,8 @@ $(document).ready(function () {
 
         }).then(function (response) {
             console.log(response)
+            console.log(response.tripset[0])
+        
             //Could not get the flight time from API
             let  fTime = response.departDate;
             console.log("flight Time: "+fTime)
@@ -69,13 +72,17 @@ $(document).ready(function () {
             console.log("flight Price: "+fPrice)
             // let pBaggage = "";
             // console.log("Passager Baggage: "+pBaggage)
-                    //main section for the display result
+                 
+            //link the button to the kayak pag
+            let kayayURL  ='https://www.kayak.com'+ response.tripset[0].shareURL
+
+        //Main section for the display result
         $(".display-result").addClass("d-inline")
         //  response container
         let displayDiv = $("<div>").addClass("result-div  border border-top border-primary").appendTo(".display-result-middle")
         //    Time  duration  and Accessorie (TDA) div 
         let TDA = $("<div>").addClass("time-duration-accessories-row").appendTo(displayDiv)
-        // set the responsiveness of the TDA 
+        // Set the responsiveness of the TDA 
         let TDAresponsive = $("<div>").addClass("time-duration-accessories col-7 order-first").appendTo(TDA)
         let TDArow = $("<div>").addClass("row time-duration-accessories").appendTo(TDAresponsive)
         //add flight time here...
@@ -92,15 +99,23 @@ $(document).ready(function () {
         // let airlineIcon = $("<div>").addClass(" flight-icon col-1").appendTo(airlineInfo).text("icon") 
         let airlineName = $("<div>").addClass("airline-name col-4").appendTo(airlineInfo).text(provider)  
         let terminalName = $("<div>").addClass(" terminal-name col-5").appendTo(airlineInfo).text(fTerminal) 
-        let priceandbutton = $("<div>").addClass(" priceandbutton col-2 text-danger").appendTo(airlineInfo).text(fPrice) 
+        let priceandbutton = $("<div>").addClass(" priceandbutton col-2 text-danger").appendTo(airlineInfo).text(fPrice)
+       //The 'more' btn
         let searchBtn =    $("<button>").addClass("btn-price").css("margin-left","10px").text("Submit").appendTo(priceandbutton)
+
+        $( ".btn-price" ).click(function() {
+            window.location.replace(kayayURL)
+          });
+         
+         
       
         
         // Rating infomation
         let ratinginfo = $("<div>").addClass("rating-info mt-2").appendTo(displayDiv) 
         let rating = $("<div>").addClass("col-2 rating ").appendTo(ratinginfo);
         // $(rating).html('<a href="http://www.google.com" ><span class="text-success">Excellent Flight (8.7/10)</span></a>')
-        // let operator = $("<div>").addClass("col.6 operator").appendTo(ratinginfo).text("American Airlines 8497 operated by Japan Airlines")
+        // let bookNow = $("<div>")
+        // bookNow.html("<a href="+kayayURL+" class= 'col.6 operator'>Book Now!</a> ").appendTo(ratinginfo)
 
         //baggage info
         let baggagesinfo = $("<div>").addClass("row baggages-info").appendTo(displayDiv).css("marginBottom", "20px")
@@ -193,7 +208,7 @@ $(document).ready(function () {
 
         $("#submit").on("click", event => {
             event.preventDefault()
-            getFood()
+           // getFood()
             getDestination()
             // getDestination()
             // displayResult()
