@@ -46,27 +46,32 @@ $(document).ready(function () {
 
 
         }).then(function (response) {
+
             console.log(response)
+            let len = 1;
+            for(let i = 0; i< len ; i++){
             //Could not get the flight time from API
             let  fTime = response.departDate;
             console.log("flight Time: "+fTime)
-            let fDuration = response.tripset[0].duration;
+            let fDuration = response.tripset[i].duration;
             console.log("flight Duration: "+fDuration)
             // let fAccessories = [];
             // console.log("flight Accessories: "+fAccessories)
             // let Airlineicon = response.tripset[0].airlineLogos;
             // console.log("Airline Icon: "+Airlineicon)
-            let provider = response.tripset[0].cheapestProviderName;
+            let provider = response.tripset[i].cheapestProviderName;
             console.log("Provider name: "+provider)
-            let fTerminal = `${response.tripset[0].flightRoutes[0].originAirport} to ${response.tripset[0].flightRoutes[0].destinationAirport}`;
+            let fTerminal = `${response.tripset[i].flightRoutes[0].originAirport} to ${response.tripset[i].flightRoutes[0].destinationAirport}`;
             console.log("flight Terminal: "+fTerminal)
             //could not get rating from API
-            let fAirline = response.tripset[0].airlines;        
+            let fAirline = response.tripset[i].airlines;        
             console.log("Airline: "+fAirline)
-            let fcurrency  = response.tripset[0].currencyCode;
+            let fcurrency  = response.tripset[i].currencyCode;
             console.log("flight Currency: "+fcurrency)
-            let fPrice = response.tripset[0].displayLowTotal;
+            let fPrice = response.tripset[i].displayLowTotal;
             console.log("flight Price: "+fPrice)
+            //link the button to the kayak pag
+			let kayakURL = 'https://www.kayak.com' + response.tripset[i].shareURL;
             // let pBaggage = "";
             // console.log("Passager Baggage: "+pBaggage)
                     //main section for the display result
@@ -106,7 +111,11 @@ $(document).ready(function () {
         let baggagesinfo = $("<div>").addClass("row baggages-info").appendTo(displayDiv).css("marginBottom", "20px")
         let baggages = $("<div>").addClass("baggages col-4 text-primary").appendTo(baggagesinfo)
         $(baggages).html(bags)
-
+        
+        $('.btn-price').click(function() {
+            window.location.replace(kayakURL);
+        });
+            }
       });
 
      }
@@ -189,7 +198,7 @@ $(document).ready(function () {
             event.preventDefault()
             getFood()
             
-            // getDestination()
+             getDestination()
             // displayResult()
             });
 
