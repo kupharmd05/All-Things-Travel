@@ -48,34 +48,39 @@ $(document).ready(function () {
 
         }).then(function (response) {
             console.log(response)
-            console.log(response.tripset[0])
+           
         
             //Could not get the flight time from API
             let  fTime = response.departDate;
             console.log("flight Time: "+fTime)
-            let fDuration = response.tripset[0].duration;
+
+            //Loop through the tripset
+            let len = 1;
+            for(let i = 0 ; i < len; i++){
+            let fDuration = response.tripset[i].duration;
             console.log("flight Duration: "+fDuration)
             // let fAccessories = [];
             // console.log("flight Accessories: "+fAccessories)
             // let Airlineicon = response.tripset[0].airlineLogos;
             // console.log("Airline Icon: "+Airlineicon)
-            let provider = response.tripset[0].cheapestProviderName;
+            let provider = response.tripset[i].cheapestProviderName;
             console.log("Provider name: "+provider)
-            let fTerminal = `${response.tripset[0].flightRoutes[0].originAirport} to ${response.tripset[0].flightRoutes[0].destinationAirport}`;
+            let fTerminal = `${response.tripset[i].flightRoutes[0].originAirport} to ${response.tripset[i].flightRoutes[0].destinationAirport}`;
             console.log("flight Terminal: "+fTerminal)
             //could not get rating from API
-            let fAirline = response.tripset[0].airlines;        
+            let fAirline = response.tripset[i].airlines;        
             console.log("Airline: "+fAirline)
-            let fcurrency  = response.tripset[0].currencyCode;
+            let fcurrency  = response.tripset[i].currencyCode;
             console.log("flight Currency: "+fcurrency)
-            let fPrice = response.tripset[0].displayLowTotal;
+            let fPrice = response.tripset[i].displayLowTotal;
             console.log("flight Price: "+fPrice)
             // let pBaggage = "";
             // console.log("Passager Baggage: "+pBaggage)
-                 
-            //link the button to the kayak pag
-            let kayayURL  ='https://www.kayak.com'+ response.tripset[0].shareURL
 
+        
+            //link the button to the kayak pag
+           let kayakURL  ='https://www.kayak.com'+ response.tripset[i].shareURL;
+                 
         //Main section for the display result
         $(".display-result").addClass("d-inline")
         //  response container
@@ -100,28 +105,24 @@ $(document).ready(function () {
         let airlineName = $("<div>").addClass("airline-name col-4").appendTo(airlineInfo).text(provider)  
         let terminalName = $("<div>").addClass(" terminal-name col-5").appendTo(airlineInfo).text(fTerminal) 
         let priceandbutton = $("<div>").addClass(" priceandbutton col-2 text-danger").appendTo(airlineInfo).text(fPrice)
-       //The 'more' btn
+
+       //Redirect to the kayak Website
         let searchBtn =    $("<button>").addClass("btn-price").css("margin-left","10px").text("Submit").appendTo(priceandbutton)
 
         $( ".btn-price" ).click(function() {
-            window.location.replace(kayayURL)
+            window.location.replace(kayakURL)
           });
-         
-         
-      
         
         // Rating infomation
         let ratinginfo = $("<div>").addClass("rating-info mt-2").appendTo(displayDiv) 
         let rating = $("<div>").addClass("col-2 rating ").appendTo(ratinginfo);
-        // $(rating).html('<a href="http://www.google.com" ><span class="text-success">Excellent Flight (8.7/10)</span></a>')
-        // let bookNow = $("<div>")
-        // bookNow.html("<a href="+kayayURL+" class= 'col.6 operator'>Book Now!</a> ").appendTo(ratinginfo)
-
+       
+ 
         //baggage info
         let baggagesinfo = $("<div>").addClass("row baggages-info").appendTo(displayDiv).css("marginBottom", "20px")
         let baggages = $("<div>").addClass("baggages col-4 text-primary").appendTo(baggagesinfo)
         $(baggages).html(bags)
-
+    }  
       });
 
      }
@@ -194,24 +195,11 @@ $(document).ready(function () {
         }
     
 
-       
-    
-
-
-        
-        
-
-
-
-
-   
-
         $("#submit").on("click", event => {
             event.preventDefault()
-           // getFood()
-            getDestination()
-            // getDestination()
-            // displayResult()
+            getFood()
+             getDestination()
+           
             });
 
 });
