@@ -162,4 +162,15 @@
     color:red
 }
 
+.card {
+    display: inline-block;
+}
 
+.rating {
+    text-align: center;
+}
+
+.card-buttons {
+    display: flex;
+    justify-content: space-evenly;
+}

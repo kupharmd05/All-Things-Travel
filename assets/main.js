@@ -122,6 +122,8 @@ $(document).ready(function () {
 
     // //Zomato api
     function getFood() {
+        $("#restaurants").html("");
+
         var destCity = $("#userDestination").val().trim();
 
         console.log(destCity)
@@ -148,7 +150,7 @@ $(document).ready(function () {
                 }
             }).then(function (response) {
                 console.log(response);
-                
+                $("#restaurants-result").addClass("d-inline");
                 let rest = response.restaurants
                 console.log(rest);
                 // Checking to make sure API is pulling something back
@@ -165,18 +167,21 @@ $(document).ready(function () {
                 console.log(rest[0].restaurant.thumb);
                 
                 // Looping over response to limit it to 3, applying HTML to empty restaurants div with results
-                for (var i = 0; i < 3; i++) {
+                for (var i = 0; i < 15; i++) {
+                    
                     let name = (rest[i].restaurant.name);
                     let address = (rest[i].restaurant.location.address);
                     let url = (rest[i].restaurant.url);
                     let menu = (rest[i].restaurant.menu_url);
                     let rating = (rest[i].restaurant.user_rating.aggregate_rating);
                     let image = (rest[i].restaurant.thumb);
+                    // console.log(image + "image");
 
-
-                let restaurantInfo = '<div class="card"><div class="row p-3"><div class="col-5"><img src="'+image+'" class="img-fluid img-thumbnail alt=""></div><div class="col-5"><h6>'+name+'</h6><p>'+address+'</p></div><div class="col-1"><div class="badge badge-success">'+rating+'</div></div></div><hr><div class="row text-center no-gutters pb-3"><div class="col-6"><a href="'+menu+'" target="_blank" class="btn btn-danger">Menu</a></div><div class="col-6"><a href="'+url+'" target="_blank" class="btn btn-danger">Website</a></div></div></div>';
+                if (image !== "") {
+                let restaurantInfo = '<div class="card col-md-4 mt-2"><div class="col-10"><img src="'+image+'" class="img-fluid img-thumbnail mx-auto alt=""></div><div class="col-10"><h6>'+name+'</h6><p>'+address+'</p></div><div class="col-10 rating"><div class="row badge badge-success">'+"Rating "+rating+'</div></div><div class="row text-center pb-3 mt-2 card-buttons col-md-10"><div class="col-3"><a href="'+menu+'" target="_blank" class="btn btn-secondary">Menu</a></div><div class="col-3"><a href="'+url+'" target="_blank" class="btn btn-secondary">Website</a></div></div></div>';
                 
-                $("#restaurants").append(restaurantInfo);
+                $(".restaurants-result").removeClass("d-none").append(restaurantInfo);
+                    } 
                 }
 
                 
@@ -187,23 +192,12 @@ $(document).ready(function () {
 
         }
     
-
        
-    
-
-
-        
-        
-
-
-
-
-   
 
         $("#submit").on("click", event => {
             event.preventDefault()
             getFood()
-            getDestination()
+            
             // getDestination()
             // displayResult()
             });
