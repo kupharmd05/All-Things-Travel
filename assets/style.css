@@ -162,6 +162,20 @@
     margin-left:10px;
 }
 
+
+.card {
+    display: inline-block;
+}
+
+.rating {
+    text-align: center;
+}
+
+.card-buttons {
+    display: flex;
+    justify-content: space-evenly;
+}
+
 .result-div{
     width:100%;
     margin-top:10px;
@@ -176,3 +190,4 @@
 .time, .duration, .terminal-name{
 color:blue
 }
+
