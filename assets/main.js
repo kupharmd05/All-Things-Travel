@@ -45,9 +45,6 @@ $(document).ready(function () {
             },
 
 
-
-          
-
         }).then(function (response) {
             console.log(response)
             //Could not get the flight time from API
@@ -75,16 +72,16 @@ $(document).ready(function () {
                     //main section for the display result
         $(".display-result").addClass("d-inline")
         //  response container
-        let displayDiv = $("<div>").addClass("result-div  border mt-2").appendTo(".display-result-middle")
+        let displayDiv = $("<div>").addClass("result-div  border border-top border-primary").appendTo(".display-result-middle")
         //    Time  duration  and Accessorie (TDA) div 
-        let TDA = $("<div>").addClass("row time-duration-accessories bg-success").appendTo(displayDiv)
+        let TDA = $("<div>").addClass("time-duration-accessories-row").appendTo(displayDiv)
         // set the responsiveness of the TDA 
         let TDAresponsive = $("<div>").addClass("time-duration-accessories col-7 order-first").appendTo(TDA)
         let TDArow = $("<div>").addClass("row time-duration-accessories").appendTo(TDAresponsive)
         //add flight time here...
         let dTime = $("<div>").addClass("time col-4").appendTo(TDArow).text(fTime)
          //add flight duration here...
-        // let dDuration = $("<div>").addClass("duration col-4").appendTo(TDArow).text()
+         let dDuration = $("<div>").addClass("duration col-4").appendTo(TDArow).text()
          //add flight Accessories here...     
         // let dAccessories = $("<div>").addClass("accessories col-4").appendTo(TDArow).text("wifi")
         //takes the response image
@@ -93,14 +90,14 @@ $(document).ready(function () {
         // get the airline infomation
         let airlineInfo = $("<div>").addClass(" row airline bg- primary").appendTo(displayDiv)
         // let airlineIcon = $("<div>").addClass(" flight-icon col-1").appendTo(airlineInfo).text("icon") 
-        let airlineName = $("<div>").addClass(" airline-name col-4").appendTo(airlineInfo).text(provider)  
+        let airlineName = $("<div>").addClass("airline-name col-4").appendTo(airlineInfo).text(provider)  
         let terminalName = $("<div>").addClass(" terminal-name col-5").appendTo(airlineInfo).text(fTerminal) 
-        let priceandbutton = $("<div>").addClass(" priceandbutton col-2").appendTo(airlineInfo).text(fPrice) 
-        let searchBtn =    $("<button>").addClass("btn-price").css("margin","0px").text("Submit").appendTo(priceandbutton)
+        let priceandbutton = $("<div>").addClass(" priceandbutton col-2 text-danger").appendTo(airlineInfo).text(fPrice) 
+        let searchBtn =    $("<button>").addClass("btn-price").css("margin-left","10px").text("Submit").appendTo(priceandbutton)
       
         
         // Rating infomation
-        let ratinginfo = $("<div>").addClass("row rating-info ").appendTo(displayDiv) 
+        let ratinginfo = $("<div>").addClass("rating-info mt-2").appendTo(displayDiv) 
         let rating = $("<div>").addClass("col-2 rating ").appendTo(ratinginfo);
         // $(rating).html('<a href="http://www.google.com" ><span class="text-success">Excellent Flight (8.7/10)</span></a>')
         // let operator = $("<div>").addClass("col.6 operator").appendTo(ratinginfo).text("American Airlines 8497 operated by Japan Airlines")
@@ -109,12 +106,6 @@ $(document).ready(function () {
         let baggagesinfo = $("<div>").addClass("row baggages-info").appendTo(displayDiv).css("marginBottom", "20px")
         let baggages = $("<div>").addClass("baggages col-4 text-primary").appendTo(baggagesinfo)
         $(baggages).html(bags)
-
-     
-
-   
-
-
 
       });
 
