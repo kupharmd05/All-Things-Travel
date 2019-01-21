@@ -10,7 +10,8 @@
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
 	 crossorigin="anonymous" />
-	 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+	 crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.1/css/bootstrap-datepicker3.min.css">
 	<link rel="stylesheet" href="assets/style.css">
 
@@ -74,7 +75,7 @@
 				<div class="carousel-item active carousel-image-1">
 					<div class="conatiner">
 						<div class="carousel-caption d-none d-sm-block text-center mb-5">
-							<h1 class="display-3">San Francisco</h1>
+							<h1 class="display-3 state">San Francisco</h1>
 						</div>
 
 					</div>
@@ -82,21 +83,21 @@
 				<div class="carousel-item carousel-image-2">
 					<div class="conatiner">
 						<div class="carousel-caption d-none d-sm-block text-center mb-5">
-							<h1 class="display-3">Paris</h1>
+							<h1 class="display-3 state">Paris</h1>
 						</div>
 					</div>
 				</div>
 				<div class="carousel-item carousel-image-3">
 					<div class="conatiner">
 						<div class="carousel-caption d-none d-sm-block text-center mb-5">
-							<h1 class="display-3">London</h1>
+							<h1 class="display-3 state">London</h1>
 						</div>
 					</div>
 				</div>
 				<div class="carousel-item carousel-image-4">
 					<div class="conatiner">
 						<div class="carousel-caption d-none d-sm-block text-center mb-5">
-							<h1 class="display-3">New York</h1>
+							<h1 class="display-3 state" >New York</h1>
 						</div>
 					</div>
 				</div>
@@ -110,34 +111,39 @@
 			<!-- Left div for images -->
 
 			<div class="display-result-left col-md-2 d-sm-none d-md-inline">
-				<div class= "video">
-						<!-- Time Board -->
-						<video src="assets/timeBoard.webm" loop="true" autoplay="true" type="video/mp4"></video>
+				<div class="video">
+					<!-- Time Board video-->
+					<video src="assets/timeBoard.webm" loop="true" autoplay="true" type="video/mp4"></video>
 				</div>
-                                         <!-- Plane -->
-				<div class= "video">
-						
-						<video src="assets/PlaneOverhead.webm" loop="true"  class="play-video" type="video/mp4"></video>
+				<!-- Air Plane video-->
+				<div class="video">
+
+					<video src="assets/PlaneOverhead.webm" loop="true" class="play-video" type="video/mp4"></video>
 				</div>
-				
-				
-			
-		     </div>
+
+
+
+			</div>
 			<!-- displays the result -->
 			<div class=" display-result-middle col-xs-12 col-md-8 ">
-              
-				   <div class=" header-display text-white bg-primary">
-					          Cheapest flight result found				    
-				   </div>
-				 <section>
-						<div class="container restaurants-result d-none">
-							<div class="row"  id="restaurants"></div>	
-						</div>					   
-				 </section>
-			
+				<section class="display-result-middle-flight">
+				<div class=" header-display text-white bg-primary">
+					Cheapest flight result found
+				</div>
+				
+					<div class="flight">
+						<div class="row" id="flight"></div>
+					</div>
+				</section>
+				<section>
+					<div class="container restaurants-result d-none">
+						<div class="row" id="restaurants"></div>
+					</div>
+				</section>
+
 			</div>
 			<!-- Weather Div -->
-			<div class="display-flight-right col-md-2 d-sm-none  d-md-inline"> 
+			<div class="display-flight-right col-md-2 d-sm-none  d-md-inline">
 				<div class="weather bg-success">
 					<p class="weather-city display-2"></p>
 					<p class="weather-date"></p>
@@ -148,10 +154,13 @@
 					<p class="weather-humidity"></p>
 				</div>
 			</div>
-		
+
 		</div>
 	</section>
-	
+
+
+
+
 
 
 	<!-- Optional JavaScript -->
