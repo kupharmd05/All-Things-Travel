@@ -25,7 +25,7 @@ $(document).ready(function () {
 
     //Reduces the size of the carousel 
     function reduce() {
-        $(".carousel-item").css("height", "30vh");
+        $(".carousel-item").css("height", "20vh");
     }
 
     //Get the flight info 
@@ -177,7 +177,7 @@ $(document).ready(function () {
 
                 console.log(rest[0].restaurant.thumb);
 
-                // Looping over response to limit it to 3, applying HTML to empty restaurants div with results
+                // Looping over response to limit it to 15, applying HTML to empty restaurants div with results
                 for (var i = 0; i < 15; i++) {
 
                     let name = (rest[i].restaurant.name);
@@ -235,10 +235,10 @@ $(document).ready(function () {
     //main logic
     $("#submit").on("click", event => {
         event.preventDefault()
-        getDestination()
-        getFood()
+        // getDestination()
+        // getFood()
         reduce()
-        getWeather()
+        // getWeather()
 
     });
     //play videos
