@@ -109,27 +109,49 @@
 		<div class="row">
 			<!-- Left div for images -->
 
-			<div class="display-result-left col-md-2 d-sm-none d-md-inline"> I am left image</div>
+			<div class="display-result-left col-md-2 d-sm-none d-md-inline">
+				<div class= "video">
+						<!-- Time Board -->
+						<video src="assets/timeBoard.webm" loop="true" autoplay="true" type="video/mp4"></video>
+				</div>
+                                         <!-- Plane -->
+				<div class= "video">
+						
+						<video src="assets/PlaneOverhead.webm" loop="true"  class="play-video" type="video/mp4"></video>
+				</div>
+				
+				
+			
+		     </div>
 			<!-- displays the result -->
 			<div class=" display-result-middle col-xs-12 col-md-8 ">
               
 				   <div class=" header-display text-white bg-primary">
-					Cheapest flight result found
-				  
-				    <!-- The display div -->
+					          Cheapest flight result found				    
+				   </div>
+				 <section>
+						<div class="container restaurants-result d-none">
+							<div class="row"  id="restaurants"></div>	
+						</div>					   
+				 </section>
+			
+			</div>
+			<!-- Weather Div -->
+			<div class="display-flight-right col-md-2 d-sm-none  d-md-inline"> 
+				<div class="weather bg-success">
+					<p class="weather-city display-2"></p>
+					<p class="weather-date"></p>
+					<p class="weather-icon"></p>
+					<p class="weather-description"></p>
+					<p class="weather-max-min"></p>
+					<p class="weather-wind"></p>
+					<p class="weather-humidity"></p>
 				</div>
 			</div>
-
-			
-			<div class="display-flight-right col-md-2 d-sm-none  d-md-inline">I am right image</div>
+		
 		</div>
 	</section>
-	<section>
-		<div class="container restaurants-result d-none">
-			<div class="row"  id="restaurants">
-					
-			</div>
-	</section>
+	
 
 
 	<!-- Optional JavaScript -->
