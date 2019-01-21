@@ -1,4 +1,7 @@
 $(document).ready(function () {
+    
+// Check to make sure flight is populated before other features
+    let isFlightAvailable = false
 
     $("#outgoingDate").datepicker({
         dateFormat: 'yy-mm-dd'
@@ -18,12 +21,14 @@ $(document).ready(function () {
         $(this).parents(".dropdown").find(".btn").html($(this).text());
         $(this).parents(".dropdown").find(".btn").val($(this).data("value"));
     });
-    
+
+
+    //Reduces the size of the carousel 
     function reduce(){
         $(".carousel-item").css("height", "30vh");
     }
 
-
+//Get the flight info 
     function getDestination() {
         var destCity = $("#userDestination").val().trim();
 
@@ -120,7 +125,7 @@ $(document).ready(function () {
         });
             }
       });
-
+      isFlightAvailable === true
      }
 
     // //Zomato api
@@ -194,16 +199,52 @@ $(document).ready(function () {
             }); 
 
         }
+     //get the weather 
+     function getWeather(){
+        let city = $("#userDestination").val().trim()
+        let key = "7ebae446da29463e9590b7b6b2719ab2";
+        let weatherURL1 = "https://api.weatherbit.io/v2.0/forecast/daily?city="+city+"&units=M&key="+key
+      
+           $.ajax({
+               url:weatherURL1,
+               method: "get"
+           }).then(response => {
+               console.log(response)
+               let rd = response.data[0]
+               let weather = rd.weather
+               let icon = weather.icon
+               $(".weather-city").text(response.city_name)
+               $(".weather-date").text(rd.datetime)
+               let iconURL = " <img src = 'https://www.weatherbit.io/static/img/icons/"+icon +".png'>"
+             $(".weather-icon").html(iconURL)
+             $(".weather-temp").text(weather.temp)
+              $(".weather-description").text(weather.description)
+              $(".weather-max-min").html(`Min: ${rd.max_temp}<sup>0</sup>F- Max: ${rd.min_temp}<sup>0</sup>F`)
+            //Wind Direction
+              $(".weather-wind").html("Wind: "+rd.wind_dir+"<sup>0</sup>" +" "+ rd.wind_spd.toFixed(1)+"mph")
+              //Humidity
+              $(".weather-humidity").text("Humidity: "+rd.rh + "%")
+           
+              
+            })
+        }
     
-       
-
-        $("#submit").on("click", event => {
-            event.preventDefault()
+    //main logic
+    $("#submit").on("click", event => {
+        event.preventDefault()
+        getDestination()
+      
             getFood()
-            // getDestination()
             reduce()
-            });
+            getWeather()
+           
+    });
+ //play videos
+ $('.play-video').click(function() {
+    this.paused ? this.play() : this.pause();
+});
 
+       
 });
 
 
