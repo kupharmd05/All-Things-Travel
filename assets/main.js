@@ -127,8 +127,17 @@ $(document).ready(function () {
                 $(baggages).html(bags)
 
                 $('.btn-price').click(function () {
-                  
-                    window.location.replace("<a href="+ kayakURL+ '"'+" target='_blank' </a>");
+                   
+                        var a = new RegExp('/' + window.location.host + '/');
+                        if(!a.test(this.href)) {
+                            $(this).click(function(event) {
+                                event.preventDefault();
+                                event.stopPropagation();
+                                window.open(this.href, '_blank');
+                            }
+                            );
+                        }
+                    window.open(kayakURL);
                 });
             }
         });
