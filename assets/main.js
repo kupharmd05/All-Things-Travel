@@ -126,10 +126,20 @@ $(document).ready(function () {
                 let baggages = $("<div>").addClass("baggages col-4 text-primary").appendTo(baggagesinfo)
                 $(baggages).html(bags)
 
-                $('.btn-price').click(function () {
-                  
-                    window.location.replace("<a href="+ kayakURL+ '"'+" target='_blank' </a>");
-                });
+               
+      $('.btn-price').click(function () {
+                   
+                   var a = new RegExp('/' + window.location.host + '/');
+                   if(!a.test(this.href)) {
+                       $(this).click(function(event) {
+                           event.preventDefault();
+                           event.stopPropagation();
+                           window.open(this.href, '_blank');
+                       }
+                       );
+                   }
+               window.open(kayakURL);
+           });
             }
         });
        
