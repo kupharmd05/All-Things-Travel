@@ -223,3 +223,38 @@
     margin-top: 30px;
 
 }
+.team-info{
+    
+        font-family: 'Tangerine', serif;
+        font-size: 16px;
+        text-shadow: 4px 4px 4px #aaa;
+        padding-top:10px;
+        margin-bottom:10px
+      
+}
+.member-images{ 
+     width:250px;
+     height:250px;
+     border-radius:50%;
+
+}
+
+.media{
+   padding:10px;
+   text-align:center;
+   margin-top:10px;
+}
+.social-media{
+    background-color: #405365;
+}
+
+.breann-info{
+    display:none
+}
+.breann-image:hover {
+display:none
+}
+
+.breann-info:hover {
+    display:block
+    }
