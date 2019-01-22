@@ -25,11 +25,13 @@ $(document).ready(function () {
 
     //Reduces the size of the carousel 
     function reduce() {
-        $(".carousel-item").css("height", "30vh");
+        $(".carousel-item").css("height", "20vh");
     }
 
     //Get the flight info 
     function getDestination() {
+        $(".result-div").html("");
+
         var destCity = $("#userDestination").val().trim();
 
 
@@ -46,7 +48,7 @@ $(document).ready(function () {
         var adults = $("#adults").val().trim();
 
         $.ajax({
-            url: "https://apidojo-kayak-v1.p.rapidapi.com/flights/create-session?origin1=" + location + "&destination1=" + destCity + "&departdate1=" + outgoingDate + "&cabin=e&currency=USD&adults=1&bags=1&departdate2=" + returnDate,
+            url: "https://apidojo-kayak-v1.p.rapidapi.com/flights/create-session?origin1=" + location + "&destination1=" + destCity + "&departdate1=" + outgoingDate + "&cabin=e&currency=USD&adults="+adults+"&bags="+bags+"&departdate2=" + returnDate,
             method: "GET",
             headers: {
                 "X-RapidAPI-Key": "95faa2613dmsh9cf38f16b3fd33bp1f9e0djsnbdbe12d99b9f"
@@ -109,8 +111,8 @@ $(document).ready(function () {
                 // let airlineIcon = $("<div>").addClass(" flight-icon col-1").appendTo(airlineInfo).text("icon") 
                 let airlineName = $("<div>").addClass("airline-name col-4").appendTo(airlineInfo).text(provider)
                 let terminalName = $("<div>").addClass(" terminal-name col-5").appendTo(airlineInfo).text(fTerminal)
-                let priceandbutton = $("<div>").addClass(" priceandbutton col-2 text-danger").appendTo(airlineInfo).text(fPrice)
-                let searchBtn = $("<button>").addClass("btn-price").css("margin-left", "10px").text("Submit").appendTo(priceandbutton)
+                let priceandbutton = $("<div>").addClass("priceandbutton col-2 text-danger").appendTo(airlineInfo).text(fPrice)
+                let searchBtn = $("<button>").addClass("btn-price").css("margin-left", "10px").text("Research").appendTo(priceandbutton)
 
 
                 // Rating infomation
@@ -135,7 +137,7 @@ $(document).ready(function () {
 
     // //Zomato api
     function getFood() {
-        $("#restaurants").html("");
+        $("#restaurants").empty();
 
         var destCity = $("#userDestination").val().trim();
 
@@ -163,7 +165,9 @@ $(document).ready(function () {
                 }
             }).then(function (response) {
                 console.log(response);
-                $("#restaurants-result").addClass("d-inline");
+                $("#restaurants").html("");
+                
+
                 let rest = response.restaurants
                 console.log(rest);
                 // Checking to make sure API is pulling something back
@@ -179,7 +183,7 @@ $(document).ready(function () {
 
                 console.log(rest[0].restaurant.thumb);
 
-                // Looping over response to limit it to 3, applying HTML to empty restaurants div with results
+                // Looping over response to limit it to 15, applying HTML to empty restaurants div with results
                 for (var i = 0; i < 15; i++) {
 
                     let name = (rest[i].restaurant.name);
@@ -189,11 +193,13 @@ $(document).ready(function () {
                     let rating = (rest[i].restaurant.user_rating.aggregate_rating);
                     let image = (rest[i].restaurant.thumb);
                     // console.log(image + "image");
+                    
 
                     if (image !== "") {
-                        let restaurantInfo = '<div class="card col-md-4 mt-2"><div class="col-10"><img src="' + image + '" class="img-fluid img-thumbnail mx-auto alt=""></div><div class="col-12"><h6>' + name + '</h6><p>' + address + '</p></div><div class="col-10 rating"><div class="row badge badge-success">' + "Rating " + rating + '</div></div><div class="row text-center pb-3 mt-2 card-buttons col-md-10"><div class="col-3"><a href="' + menu + '" target="_blank" class="btn btn-secondary">Menu</a></div><div class="col-3"><a href="' + url + '" target="_blank" class="btn btn-secondary">Website</a></div></div></div>';
+                        let restaurantInfo = '<div class="card col-md-4 mt-2"><div class="col-10"><img src="' + image + '" class="img-fluid img-thumbnail mx-auto alt=""></div><div class="col-12"><h6>' + name + '</h6><p>' + address + '</p></div><div class="col-10 rating"><div class="row badge badge-success">' + "Rating " + rating + '</div></div><div class="row text-center pb-3 mt-2 card-buttons col-md-10"><div class="col-3"><a href="' + menu + '"target="_blank" class="btn btn-secondary">Menu</a></div><div class="col-3"><a href="' + url + '" target="_blank" class="btn btn-secondary">Website</a></div></div></div>';
 
-                        $(".restaurants-result").removeClass("d-none").append(restaurantInfo);
+                        $(".restaurants-result").removeClass("d-none")
+                        $("#restaurants").append(restaurantInfo);
                     }
                 }
 
@@ -208,7 +214,7 @@ $(document).ready(function () {
     function getWeather() {
         let city = $("#userDestination").val().trim()
         let key = "7ebae446da29463e9590b7b6b2719ab2";
-        let weatherURL1 = "https://api.weatherbit.io/v2.0/forecast/daily?city=" + city + "&units=M&key=" + key
+        let weatherURL1 = "https://api.weatherbit.io/v2.0/forecast/daily?city=" + city + "&units=F&key=" + key
 
         $.ajax({
             url: weatherURL1,
@@ -224,7 +230,9 @@ $(document).ready(function () {
             $(".weather-icon").html(iconURL)
             $(".weather-temp").text(weather.temp)
             $(".weather-description").text(weather.description)
-            $(".weather-max-min").html(`Max: ${rd.max_temp}<sup>0</sup>F- Min: ${rd.min_temp}<sup>0</sup>F`)
+
+            $(".weather-max-min").html(`Min: ${rd.min_temp}<sup>0</sup>F- Max: ${rd.max_temp}<sup>0</sup>F`)
+
             //Wind Direction
             $(".weather-wind").html("Wind: " + rd.wind_dir + "<sup>0</sup>" + " " + rd.wind_spd.toFixed(1) + "mph")
             //Humidity
