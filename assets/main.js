@@ -80,6 +80,7 @@ $(document).ready(function () {
                 console.log("flight Price: " + fPrice)
                 //link the button to the kayak pag
                 let kayakURL = 'https://www.kayak.com' + response.tripset[i].shareURL;
+                
                 // let pBaggage = "";
                 // console.log("Passager Baggage: "+pBaggage)
                 //main section for the display result
@@ -124,7 +125,8 @@ $(document).ready(function () {
                 $(baggages).html(bags)
 
                 $('.btn-price').click(function () {
-                    window.location.replace(kayakURL);
+                  
+                    window.location.replace("<a href="+ kayakURL+ '"'+" target='_blank' </a>");
                 });
             }
         });
@@ -222,7 +224,7 @@ $(document).ready(function () {
             $(".weather-icon").html(iconURL)
             $(".weather-temp").text(weather.temp)
             $(".weather-description").text(weather.description)
-            $(".weather-max-min").html(`Min: ${rd.max_temp}<sup>0</sup>F- Max: ${rd.min_temp}<sup>0</sup>F`)
+            $(".weather-max-min").html(`Max: ${rd.max_temp}<sup>0</sup>F- Min: ${rd.min_temp}<sup>0</sup>F`)
             //Wind Direction
             $(".weather-wind").html("Wind: " + rd.wind_dir + "<sup>0</sup>" + " " + rd.wind_spd.toFixed(1) + "mph")
             //Humidity
@@ -242,9 +244,16 @@ $(document).ready(function () {
 
     });
     //play videos
-    $('.play-video').click(function () {
+    $('.play-video').click(function () {      
+
         this.paused ? this.play() : this.pause();
     });
+
+    //Footer Logic
+    
+    
+     
+     
 
 
 });
