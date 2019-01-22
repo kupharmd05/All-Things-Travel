@@ -248,13 +248,41 @@
     background-color: #405365;
 }
 
-.breann-info{
-    display:none
-}
-.breann-image:hover {
-display:none
+.hidden{
+    display: none;
 }
 
-.breann-info:hover {
-    display:block
+.container:hover .visible {
+    display: none;
+}
+
+.container:hover .hidden {
+    display: block;
+}
+
+.bios {
+    width: 25%;
+    display: grid;
+    justify-content: center;
+}
+
+@media (min-width: 0px) and (max-width: 768px) {
+    .member-images {
+       display: none;
     }
+}
+@media (min-width:769px) and (max-width: 992px) {
+    .member-images {
+        height: 200px;
+        width: 200px;
+        border-radius: 50%;
+    }
+}
+
+@media (min-width: 993px) and (max-width: 1600px) {
+    .member-images {
+        height: 250px;
+        width: 250px;
+        border-radius: 50%;
+    }
+}
